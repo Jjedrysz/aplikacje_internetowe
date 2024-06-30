@@ -1,15 +1,24 @@
 <?php
-define('_SERVER_NAME', 'localhost');
-define('_SERVER_URL', 'http://'._SERVER_NAME);
-define('_APP_ROOT', '/kalkulator');
-define('_APP_URL', _SERVER_URL._APP_ROOT);
-define("_ROOT_PATH", dirname(__FILE__));
 
-/*
-function out(&$param){
-	if (isset($param)){
-		echo $param;
-	}
-}
-*/
-?>
+
+$conf->server_name = 'localhost';
+$conf->server_url = 'http://'.$conf->server_name;
+$conf->app_root = '/kalkulator';
+$conf->action_root = $conf->app_root.'/app/ctrl.php?action=';
+
+# konfiguracja bazy danych (wymagane)
+$conf->db_type = 'mysql';
+$conf->db_server = 'localhost';
+$conf->db_name = 'simpledb';
+$conf->db_user = 'root';
+$conf->db_pass = 'xyz';
+$conf->db_charset = 'utf8';
+
+# konfiguracja bazy danych (opcjonalna)
+$conf->db_port = '3306';
+#$conf->db_prefix = '';
+$conf->db_option = [ PDO::ATTR_CASE => PDO::CASE_NATURAL, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ];
+
+$conf->action_url = $conf->server_url.$conf->action_root;
+$conf->app_url = $conf->server_url.$conf->app_root;
+$conf->root_path = dirname(__FILE__);
